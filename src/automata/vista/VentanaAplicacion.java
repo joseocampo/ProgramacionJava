@@ -27,9 +27,6 @@ public class VentanaAplicacion extends JFrame implements Observer {
         configurar();
     }
 
-    
-    
-    
     private void configurar() {
         ajustarComponentes(getContentPane());
         setResizable(true);
@@ -50,11 +47,14 @@ public class VentanaAplicacion extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e) {
 
                 panelPrincipal.addMouseListener(new MouseAdapter() {
+                    String s = JOptionPane.showInputDialog("Estado Inicial");
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        String s = JOptionPane.showInputDialog("Estado Inicial");
-                        agregarEstado(e.getPoint(), 1,s);
+                        
+                        agregarEstado(e.getPoint());
 
+                        ponerEtiqueta(s);
+                        ponerTipo();
                     }
 
                 });
@@ -65,29 +65,26 @@ public class VentanaAplicacion extends JFrame implements Observer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelPrincipal.addMouseListener(new MouseAdapter() {
+                    String s = JOptionPane.showInputDialog("Estado Intermedio");
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        String s = JOptionPane.showInputDialog("Estado Intermedio");
-                        agregarEstado(e.getPoint(), 2,s);
-
+                        
+                        agregarEstado(e.getPoint());
+                        ponerTipo();
+                        ponerEtiqueta(s);
                     }
                 });
             }
         });
 
-        System.out.println("k" + k);
     }
 
     public void ponerEtiqueta(String e) {
         gestorPrincipal.ponerEtiqueta(e);
     }
 
-    public void ponerTipo(int t) {
-        gestorPrincipal.ponerTipo(t);
-    }
-
-    private void actualizarK() {
-        k = k + 1;
+    public void ponerTipo() {
+        gestorPrincipal.ponerTipo();
     }
 
     private void ajustarMenus(Container c) {
@@ -115,8 +112,8 @@ public class VentanaAplicacion extends JFrame implements Observer {
         setVisible(true);
     }
 
-    private void agregarEstado(Point loc, int tipo,String etiqueta) {
-        gestorPrincipal.agregar(loc, tipo,etiqueta);
+    private void agregarEstado(Point loc) {
+        gestorPrincipal.agregar(loc);
     }
 
     private void borrarUltimoMarcador() {
@@ -151,6 +148,6 @@ public class VentanaAplicacion extends JFrame implements Observer {
     private JMenuItem itemFinal;
 
     private JMenuItem itemHilera;
-    public int k = 0;
+
 //hay cambios
 }

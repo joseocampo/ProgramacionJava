@@ -7,15 +7,15 @@ import java.awt.Point;
 
 public class Estado {
 
-    public Estado(Point loc, int tipo, String etiqueta) {
+    public Estado(Point loc) {
         this.n = k++;
         this.loc = loc;
-        this.tipo = tipo;
-        this.etiqueta = etiqueta;
+        this.tipo = 0;
+        this.etiqueta = " ";
     }
 
-    public Estado(int x, int y, int tipo, String etiqueta) {
-        this(new Point(x, y), tipo, etiqueta);
+    public Estado(int x, int y) {
+        this(new Point(x, y));
     }
 
     public void dibujar(Graphics2D g) {

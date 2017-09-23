@@ -15,14 +15,14 @@ public class Modelo extends Observable {
         estados = new ArrayList<>();
     }
 
-    public void agregar(Point loc, int tipo, String etiqueta) {
-//        if (!hayEstadoInicial()) {
-        estados.add(new Estado(loc, tipo, etiqueta));
-        System.out.println(this);
+    public void agregar(Point loc) {
+        if (!hayEstadoInicial()) {
+            estados.add(new Estado(loc));
+            System.out.println(this);
 
-        setChanged();
-        notifyObservers();
-//        }
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void borrarUltimo() {
@@ -80,15 +80,27 @@ public class Modelo extends Observable {
     public void ponerEtiqueta(String e) {
         for (Estado m : estados) {
             m.setEtiqueta(e);
+
+            setChanged();
+            notifyObservers();
         }
 
-        setChanged();
-        notifyObservers();
     }
 
-    public void ponerTipo(int t) {
+    public void ponerTipo() {
         for (Estado m : estados) {
-            m.setTipo(t);
+            switch (m.getTipo()) {
+                case 0:
+                    m.setTipo(1);
+                    break;
+                case 1:
+                    m.setTipo(2);
+                    break;
+                default:
+                    m.setTipo(3);
+                    break;
+            }
+            
 
         }
     }
@@ -97,8 +109,6 @@ public class Modelo extends Observable {
         for (Estado e : estados) {
             if (e.getTipo() == 1) {
                 return true;
-                
-
             }
         }
         return false;
