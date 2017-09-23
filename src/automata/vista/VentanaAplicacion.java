@@ -52,7 +52,8 @@ public class VentanaAplicacion extends JFrame implements Observer {
                 panelPrincipal.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        agregarEstado(e.getPoint(), 1,JOptionPane.showInputDialog("Estado Inicial"));
+                        String s = JOptionPane.showInputDialog("Estado Inicial");
+                        agregarEstado(e.getPoint(), 1,s);
 
                     }
 
@@ -66,7 +67,8 @@ public class VentanaAplicacion extends JFrame implements Observer {
                 panelPrincipal.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        agregarEstado(e.getPoint(), 2,JOptionPane.showInputDialog("Estado Intermedio"));
+                        String s = JOptionPane.showInputDialog("Estado Intermedio");
+                        agregarEstado(e.getPoint(), 2,s);
 
                     }
                 });
