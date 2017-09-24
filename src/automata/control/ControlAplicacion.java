@@ -18,8 +18,8 @@ public class ControlAplicacion {
         datos.addObserver(obs);
     }
     
-    public void agregar(Point loc) {
-        datos.agregar(loc);
+    public void agregar(Point loc,int tipo,String etiqueta) {
+        datos.agregar(loc,tipo,etiqueta);
     }
     
     public void borrarUltimo() {
@@ -30,9 +30,7 @@ public class ControlAplicacion {
         datos.borrarTodos();
     }
 
-    public void ponerEtiqueta(String e) {
-        datos.ponerEtiqueta(e);
-    }
+    
     public void ponerTipo(){
         datos.ponerTipo();
     }

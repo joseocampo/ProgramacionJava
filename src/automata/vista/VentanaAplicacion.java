@@ -51,14 +51,12 @@ public class VentanaAplicacion extends JFrame implements Observer {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         
-                        agregarEstado(e.getPoint());
-
-                        ponerEtiqueta(s);
-                        ponerTipo();
+                        agregarEstado(e.getPoint(),1,s);
                     }
 
                 });
                 itemInicial.setEnabled(false);
+                panelPrincipal.setEnabled(false);
             }
         });
         itemIntermedio.addActionListener(new ActionListener() {
@@ -69,19 +67,17 @@ public class VentanaAplicacion extends JFrame implements Observer {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         
-                        agregarEstado(e.getPoint());
-                        ponerTipo();
-                        ponerEtiqueta(s);
+                        agregarEstado(e.getPoint(),2,s);
                     }
                 });
+                panelPrincipal.setEnabled(false);
             }
+            
         });
 
     }
 
-    public void ponerEtiqueta(String e) {
-        gestorPrincipal.ponerEtiqueta(e);
-    }
+    
 
     public void ponerTipo() {
         gestorPrincipal.ponerTipo();
@@ -112,8 +108,8 @@ public class VentanaAplicacion extends JFrame implements Observer {
         setVisible(true);
     }
 
-    private void agregarEstado(Point loc) {
-        gestorPrincipal.agregar(loc);
+    private void agregarEstado(Point loc,int tipo,String etiqueta) {
+        gestorPrincipal.agregar(loc,tipo,etiqueta);
     }
 
     private void borrarUltimoMarcador() {

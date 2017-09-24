@@ -15,9 +15,9 @@ public class Modelo extends Observable {
         estados = new ArrayList<>();
     }
 
-    public void agregar(Point loc) {
-        if (!hayEstadoInicial()) {
-            estados.add(new Estado(loc));
+    public void agregar(Point loc, int tipo, String etiqueta) {
+        if (!existeInicial()) {
+            estados.add(new Estado(loc, tipo, etiqueta));
             System.out.println(this);
 
             setChanged();
@@ -26,10 +26,10 @@ public class Modelo extends Observable {
     }
 
     public void borrarUltimo() {
-        if (!estados.isEmpty()) {
+        if (!existeInicial()) {
             estados.remove(estados.size() - 1);
             System.out.println(this);
-
+            
             setChanged();
             notifyObservers();
         }
@@ -77,37 +77,27 @@ public class Modelo extends Observable {
         return r.toString();
     }
 
-    public void ponerEtiqueta(String e) {
-        for (Estado m : estados) {
-            m.setEtiqueta(e);
-
-            setChanged();
-            notifyObservers();
+    public boolean existeInicial() {
+        if (!estados.isEmpty()) {
+            return estados.get(0).getTipo() == 1;
         }
-
+        return false;
     }
 
     public void ponerTipo() {
         for (Estado m : estados) {
-            switch (m.getTipo()) {
-                case 0:
-                    m.setTipo(1);
-                    break;
-                case 1:
-                    m.setTipo(2);
-                    break;
-                default:
-                    m.setTipo(3);
-                    break;
+            if (estados.get(0).getTipo() == 0) {
+                m.setTipo(1);
+            } else if (estados.get(0).getTipo() == 1) {
+                return;
             }
-            
 
         }
     }
 
     private boolean hayEstadoInicial() {
         for (Estado e : estados) {
-            if (e.getTipo() == 1) {
+            if (estados.get(0).getTipo() == 1) {
                 return true;
             }
         }

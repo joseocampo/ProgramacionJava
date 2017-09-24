@@ -7,15 +7,15 @@ import java.awt.Point;
 
 public class Estado {
 
-    public Estado(Point loc) {
+    public Estado(Point punto,int tipo,String etiqueta) {
         this.n = k++;
-        this.loc = loc;
-        this.tipo = 0;
-        this.etiqueta = " ";
+        this.punto = punto;
+        this.tipo = tipo;
+        this.etiqueta = etiqueta;
     }
 
-    public Estado(int x, int y) {
-        this(new Point(x, y));
+    public Estado(int x, int y,int tipo,String etiqueta) {
+        this(new Point(x, y),tipo,etiqueta);
     }
 
     public void dibujar(Graphics2D g) {
@@ -37,22 +37,22 @@ public class Estado {
                 break;
         }
 
-        g.fillOval(loc.x - 4, loc.y - 4, 64, 64);
+        g.fillOval(punto.x - 4, punto.y - 4, 64, 64);
 
         g.setFont(TIPO_BASE);
         g.setColor(Color.BLACK);
 
-        g.drawString(String.format("%s", etiqueta), loc.x + 16, loc.y + 32);
+        g.drawString(String.format("%s", etiqueta), punto.x + 16, punto.y + 32);
 
     }
 
     @Override
     public String toString() {
-        return String.format("{%d, %d}", loc.x, loc.y);
+        return String.format("{%d, %d}", punto.x, punto.y);
     }
 
     public Point obtenerPosicion() {
-        return loc;
+        return punto;
     }
 
     public void setEtiqueta(String etiqueta) {
@@ -75,7 +75,7 @@ public class Estado {
 
     private static int k = 0;
     private int n;
-    private Point loc;
+    private Point punto;
     private String etiqueta;
 
     private int tipo;
