@@ -15,6 +15,7 @@ public class PanelEstados extends JPanel {
     }
 
     private void configurar() {
+
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 

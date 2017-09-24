@@ -8,8 +8,8 @@ import java.awt.Point;
 public class Estado {
 
     public Estado(Point loc, int tipo, String etiqueta) {
-        this.n = k++;
         this.loc = loc;
+        this.n=k++;
         this.tipo = tipo;
         this.etiqueta = etiqueta;
     }
@@ -17,23 +17,18 @@ public class Estado {
     public Estado(int x, int y, int tipo, String etiqueta) {
         this(new Point(x, y), tipo, etiqueta);
     }
-
+    
     public void dibujar(Graphics2D g) {
 
-//        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT);
         switch (tipo) {
             case 1:
                 g.setColor(Color.BLUE);
-
                 break;
             case 2:
                 g.setColor(Color.GREEN);
-
                 break;
             default:
                 g.setColor(Color.RED);
-
                 break;
         }
 
@@ -42,7 +37,7 @@ public class Estado {
         g.setFont(TIPO_BASE);
         g.setColor(Color.BLACK);
 
-        g.drawString(String.format("%s", etiqueta), loc.x + 16, loc.y + 32);
+        g.drawString(String.format("%s%s", etiqueta,n), loc.x + 16, loc.y + 32);
 
     }
 
@@ -74,7 +69,7 @@ public class Estado {
             = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 
     private static int k = 0;
-    private int n;
+    int n;
     private Point loc;
     private String etiqueta;
 

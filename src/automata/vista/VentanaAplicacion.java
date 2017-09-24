@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
@@ -27,9 +28,6 @@ public class VentanaAplicacion extends JFrame implements Observer {
         configurar();
     }
 
-    
-    
-    
     private void configurar() {
         ajustarComponentes(getContentPane());
         setResizable(true);
@@ -52,43 +50,56 @@ public class VentanaAplicacion extends JFrame implements Observer {
                 panelPrincipal.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        String s = JOptionPane.showInputDialog("Estado Inicial");
-                        agregarEstado(e.getPoint(), 1,s);
-
+                        if (!gestorPrincipal.getModelo().hayEstadoInicial()) {
+                            String s = JOptionPane.showInputDialog("Estado Inicial");
+                            agregarEstado(e.getPoint(), 1, s);
+                            
+                            
+                            itemInicial.addActionListener(new ActionListener(){//se cambia la accion del objeto para que no
+                                @Override                                      //se repita
+                                public void actionPerformed(ActionEvent ae) {
+                                  
+                                }
+                            });
+                        }
                     }
-
                 });
                 itemInicial.setEnabled(false);
             }
         });
+
         itemIntermedio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelPrincipal.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        String s = JOptionPane.showInputDialog("Estado Intermedio");
-                        agregarEstado(e.getPoint(), 2,s);
-
+                        if (!gestorPrincipal.getModelo().hayEstadoInicial()) {
+                            JOptionPane.showMessageDialog(panelPrincipal, String.format(Locale.getDefault(),"Inserte estado inicial"));
+                            
+                        } else {
+                            agregarEstado(e.getPoint(), 2, gestorPrincipal.getModelo().estados.get(0).getEtiqueta());
+                        }
                     }
                 });
             }
         });
 
-        System.out.println("k" + k);
+        //System.out.println("k" + k);
     }
 
-    public void ponerEtiqueta(String e) {
-        gestorPrincipal.ponerEtiqueta(e);
-    }
+//    public void ponerEtiqueta(String e) {
+//        gestorPrincipal.ponerEtiqueta(e);
+//    }
 
-    public void ponerTipo(int t) {
-        gestorPrincipal.ponerTipo(t);
-    }
+//    public void ponerTipo(int t) {
+//        gestorPrincipal.ponerTipo(t);
+//    }
 
-    private void actualizarK() {
-        k = k + 1;
-    }
+//    private void actualizarK() {
+//        k = k + 1;
+//
+//    }
 
     private void ajustarMenus(Container c) {
 
@@ -115,8 +126,8 @@ public class VentanaAplicacion extends JFrame implements Observer {
         setVisible(true);
     }
 
-    private void agregarEstado(Point loc, int tipo,String etiqueta) {
-        gestorPrincipal.agregar(loc, tipo,etiqueta);
+    private void agregarEstado(Point loc, int tipo, String etiqueta) {
+        gestorPrincipal.agregar(loc, tipo, etiqueta);
     }
 
     private void borrarUltimoMarcador() {

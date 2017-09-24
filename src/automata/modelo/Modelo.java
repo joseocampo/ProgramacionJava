@@ -1,13 +1,13 @@
 package automata.modelo;
 
-import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import javax.swing.JOptionPane;
+
 
 public class Modelo extends Observable {
 
@@ -16,13 +16,13 @@ public class Modelo extends Observable {
     }
 
     public void agregar(Point loc, int tipo, String etiqueta) {
-//        if (!hayEstadoInicial()) {
+       if (!hayEstadoInicial() || tipo==2 || tipo == 3) {
         estados.add(new Estado(loc, tipo, etiqueta));
         System.out.println(this);
 
         setChanged();
         notifyObservers();
-//        }
+        }
     }
 
     public void borrarUltimo() {
@@ -49,16 +49,8 @@ public class Modelo extends Observable {
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        Point a = null;
         for (Estado m : estados) {
-
-//            if (a != null) {
-//                g.setColor(Color.BLACK);
-//                g.drawLine(a.x, a.y, m.obtenerPosicion().x, m.obtenerPosicion().y);
-//            }
             m.dibujar(g);
-
-//            a = m.obtenerPosicion();
         }
     }
 
@@ -77,33 +69,39 @@ public class Modelo extends Observable {
         return r.toString();
     }
 
-    public void ponerEtiqueta(String e) {
-        for (Estado m : estados) {
-            m.setEtiqueta(e);
-        }
+//    public void ponerEtiqueta(String e) {
+//        for (Estado m : estados) {
+//            m.setEtiqueta(e);
+//        }
 
-        setChanged();
-        notifyObservers();
-    }
+//        setChanged();
+//        notifyObservers();
+//    }
 
-    public void ponerTipo(int t) {
-        for (Estado m : estados) {
-            m.setTipo(t);
+//    public void ponerTipo(int t) {
+//        for (Estado m : estados) {
+//            m.setTipo(t);
+//
+//        }
+//    }
 
-        }
-    }
-
-    private boolean hayEstadoInicial() {
+    public boolean hayEstadoInicial() {
         for (Estado e : estados) {
             if (e.getTipo() == 1) {
                 return true;
-                
-
             }
         }
         return false;
     }
 
-    private final List<Estado> estados;
-
+    public boolean hayEstado2(){
+     for (Estado e : estados) {
+            if (e.getTipo() == 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public final List<Estado> estados;
 }

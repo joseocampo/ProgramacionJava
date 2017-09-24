@@ -1,6 +1,7 @@
 package automata;
 
 import automata.control.ControlAplicacion;
+import automata.modelo.Modelo;
 import automata.vista.VentanaAplicacion;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -31,7 +32,7 @@ public class automata {
 
     public static void mostrarInterfaz() {
         new VentanaAplicacion("Ejemplo marcadores",
-                new ControlAplicacion()).init();
+                new ControlAplicacion(new Modelo())).init();
     }
 //probando cambios en git
 }
