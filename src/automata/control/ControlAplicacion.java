@@ -30,8 +30,14 @@ public class ControlAplicacion {
         datos.borrarTodos();
     }
 
+<<<<<<< HEAD
     public Modelo getModelo() {
         return datos;
+=======
+    
+    public void ponerTipo(){
+        datos.ponerTipo();
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
     }
 
 //    public void ponerEtiqueta(String e) {

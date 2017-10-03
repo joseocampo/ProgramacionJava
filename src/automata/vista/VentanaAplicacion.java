@@ -48,8 +48,10 @@ public class VentanaAplicacion extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e) {
 
                 panelPrincipal.addMouseListener(new MouseAdapter() {
+                    String s = JOptionPane.showInputDialog("Estado Inicial");
                     @Override
                     public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
                         if (!gestorPrincipal.getModelo().hayEstadoInicial()) {
                             String s = JOptionPane.showInputDialog("Estado Inicial");
                             agregarEstado(e.getPoint(), 1, s);
@@ -62,9 +64,14 @@ public class VentanaAplicacion extends JFrame implements Observer {
                                 }
                             });
                         }
+=======
+                        
+                        agregarEstado(e.getPoint(),1,s);
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
                     }
                 });
                 itemInicial.setEnabled(false);
+                panelPrincipal.setEnabled(false);
             }
         });
 
@@ -72,19 +79,28 @@ public class VentanaAplicacion extends JFrame implements Observer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelPrincipal.addMouseListener(new MouseAdapter() {
+                    String s = JOptionPane.showInputDialog("Estado Intermedio");
                     @Override
                     public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
                         if (!gestorPrincipal.getModelo().hayEstadoInicial()) {
                             JOptionPane.showMessageDialog(panelPrincipal, String.format(Locale.getDefault(),"Inserte estado inicial"));
                             
                         } else {
                             agregarEstado(e.getPoint(), 2, gestorPrincipal.getModelo().estados.get(0).getEtiqueta());
                         }
+=======
+                        
+                        agregarEstado(e.getPoint(),2,s);
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
                     }
                 });
+                panelPrincipal.setEnabled(false);
             }
+            
         });
 
+<<<<<<< HEAD
         //System.out.println("k" + k);
     }
 
@@ -100,6 +116,15 @@ public class VentanaAplicacion extends JFrame implements Observer {
 //        k = k + 1;
 //
 //    }
+=======
+    }
+
+    
+
+    public void ponerTipo() {
+        gestorPrincipal.ponerTipo();
+    }
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
 
     private void ajustarMenus(Container c) {
 
@@ -126,8 +151,13 @@ public class VentanaAplicacion extends JFrame implements Observer {
         setVisible(true);
     }
 
+<<<<<<< HEAD
     private void agregarEstado(Point loc, int tipo, String etiqueta) {
         gestorPrincipal.agregar(loc, tipo, etiqueta);
+=======
+    private void agregarEstado(Point loc,int tipo,String etiqueta) {
+        gestorPrincipal.agregar(loc,tipo,etiqueta);
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
     }
 
     private void borrarUltimoMarcador() {
@@ -162,6 +192,6 @@ public class VentanaAplicacion extends JFrame implements Observer {
     private JMenuItem itemFinal;
 
     private JMenuItem itemHilera;
-    public int k = 0;
+
 //hay cambios
 }

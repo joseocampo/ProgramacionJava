@@ -7,15 +7,21 @@ import java.awt.Point;
 
 public class Estado {
 
+<<<<<<< HEAD
     public Estado(Point loc, int tipo, String etiqueta) {
         this.loc = loc;
         this.n=k++;
+=======
+    public Estado(Point punto,int tipo,String etiqueta) {
+        this.n = k++;
+        this.punto = punto;
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
         this.tipo = tipo;
         this.etiqueta = etiqueta;
     }
 
-    public Estado(int x, int y, int tipo, String etiqueta) {
-        this(new Point(x, y), tipo, etiqueta);
+    public Estado(int x, int y,int tipo,String etiqueta) {
+        this(new Point(x, y),tipo,etiqueta);
     }
     
     public void dibujar(Graphics2D g) {
@@ -32,22 +38,26 @@ public class Estado {
                 break;
         }
 
-        g.fillOval(loc.x - 4, loc.y - 4, 64, 64);
+        g.fillOval(punto.x - 4, punto.y - 4, 64, 64);
 
         g.setFont(TIPO_BASE);
         g.setColor(Color.BLACK);
 
+<<<<<<< HEAD
         g.drawString(String.format("%s%s", etiqueta,n), loc.x + 16, loc.y + 32);
+=======
+        g.drawString(String.format("%s", etiqueta), punto.x + 16, punto.y + 32);
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
 
     }
 
     @Override
     public String toString() {
-        return String.format("{%d, %d}", loc.x, loc.y);
+        return String.format("{%d, %d}", punto.x, punto.y);
     }
 
     public Point obtenerPosicion() {
-        return loc;
+        return punto;
     }
 
     public void setEtiqueta(String etiqueta) {
@@ -69,8 +79,13 @@ public class Estado {
             = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 
     private static int k = 0;
+<<<<<<< HEAD
     int n;
     private Point loc;
+=======
+    private int n;
+    private Point punto;
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
     private String etiqueta;
 
     private int tipo;

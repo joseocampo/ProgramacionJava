@@ -16,20 +16,29 @@ public class Modelo extends Observable {
     }
 
     public void agregar(Point loc, int tipo, String etiqueta) {
+<<<<<<< HEAD
        if (!hayEstadoInicial() || tipo==2 || tipo == 3) {
         estados.add(new Estado(loc, tipo, etiqueta));
         System.out.println(this);
 
         setChanged();
         notifyObservers();
+=======
+        if (!existeInicial()) {
+            estados.add(new Estado(loc, tipo, etiqueta));
+            System.out.println(this);
+
+            setChanged();
+            notifyObservers();
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
         }
     }
 
     public void borrarUltimo() {
-        if (!estados.isEmpty()) {
+        if (!existeInicial()) {
             estados.remove(estados.size() - 1);
             System.out.println(this);
-
+            
             setChanged();
             notifyObservers();
         }
@@ -69,6 +78,7 @@ public class Modelo extends Observable {
         return r.toString();
     }
 
+<<<<<<< HEAD
 //    public void ponerEtiqueta(String e) {
 //        for (Estado m : estados) {
 //            m.setEtiqueta(e);
@@ -77,6 +87,22 @@ public class Modelo extends Observable {
 //        setChanged();
 //        notifyObservers();
 //    }
+=======
+    public boolean existeInicial() {
+        if (!estados.isEmpty()) {
+            return estados.get(0).getTipo() == 1;
+        }
+        return false;
+    }
+
+    public void ponerTipo() {
+        for (Estado m : estados) {
+            if (estados.get(0).getTipo() == 0) {
+                m.setTipo(1);
+            } else if (estados.get(0).getTipo() == 1) {
+                return;
+            }
+>>>>>>> 46763c89f2cfb3906e36818a3de7300264cbc40d
 
 //    public void ponerTipo(int t) {
 //        for (Estado m : estados) {
@@ -87,7 +113,7 @@ public class Modelo extends Observable {
 
     public boolean hayEstadoInicial() {
         for (Estado e : estados) {
-            if (e.getTipo() == 1) {
+            if (estados.get(0).getTipo() == 1) {
                 return true;
             }
         }
