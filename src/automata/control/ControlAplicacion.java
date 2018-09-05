@@ -30,10 +30,8 @@ public class ControlAplicacion {
         datos.borrarTodos();
     }
 
-<<<<<<< HEAD
     public Modelo getModelo() {
         return datos;
-=======
     
     public void ponerTipo(){
         datos.ponerTipo();
@@ -42,6 +40,9 @@ public class ControlAplicacion {
 
 //    public void ponerEtiqueta(String e) {
 //        datos.ponerEtiqueta(e);
+//prueba de abndroid
+        //        datos.ponerEtiqueta(e);
+
 //    }
 
 //    public void ponerTipo(int t) {
